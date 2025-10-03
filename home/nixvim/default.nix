@@ -20,6 +20,8 @@
 
     };
 
+    clipboard.register = "unnamedplus";
+
     globals = {
       mapleader = " ";
     };
@@ -55,7 +57,12 @@
 
     plugins = {
       sleuth.enable = true;
-      which-key.enable = true;
+      which-key = {
+        enable = true;
+        settings = {
+          preset = "helix";
+        };
+      };
       ts-comments.enable = true;
       ts-autotag.enable = true;
       bufferline.enable = true;

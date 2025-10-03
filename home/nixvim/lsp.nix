@@ -24,11 +24,13 @@
           key = "gd";
           lspBufAction = "definition";
           mode = "n";
+          options.desc = "Go to definition";
         }
         {
           key = "gD";
           lspBufAction = "declaration";
           mode = "n";
+          options.desc = "Go to declaration";
         }
       ];
     };
@@ -48,7 +50,7 @@
       enable = true;
       settings = {
         keymap = {
-        preset = "enter";
+          preset = "enter";
         };
       };
     };
@@ -57,7 +59,6 @@
       enable = true;
       settings.highlight.enable = true;
     };
-
 
   };
 
