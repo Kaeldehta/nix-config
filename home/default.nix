@@ -4,30 +4,30 @@
   imports = [ ./nixvim ];
   fonts.fontconfig.enable = true;
 
+  catppuccin.enable = true;
+
   home.packages = with pkgs; [
     discord
-    # TODO: Move to yazi extraPackages
-    fzf
     pre-commit
     postman
     slack
     uv
+    pnpm
   ];
 
-  programs.chromium = {
+  home.shellAliases = {
+    lg = "lazygit";
+  };
+
+  programs.brave = {
     enable = true;
-    package = pkgs.brave;
+    # package = pkgs.brave;
     extensions = [
       { id = "nngceckbapebfimnlniiiahkandclblb"; }
     ];
   };
 
   programs.lazygit.enable = true;
-
-  catppuccin = {
-    kitty.enable = true;
-    brave.enable = true;
-  };
 
   programs.git = {
     enable = true;
@@ -46,6 +46,7 @@
   programs.yazi = {
     enable = true;
     enableZshIntegration = true;
+    extraPackages = with pkgs; [ fzf ];
   };
 
   programs.kitty = {

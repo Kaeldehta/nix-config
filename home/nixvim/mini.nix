@@ -15,6 +15,8 @@
       enable = true;
       modules = {
         pick = { };
+        pairs = {};
+        tabline = {};
       };
     };
 

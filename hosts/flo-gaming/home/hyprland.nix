@@ -3,12 +3,10 @@
 
   home.packages = with pkgs; [
     swaynotificationcenter
-    hyprshot
   ];
 
-  catppuccin.waybar.enable = true;
+  programs.hyprshot.enable = true;
 
-  #programs.hyprshot.enable = true;
 
   programs.wofi.enable = true;
   programs.waybar = {
@@ -20,7 +18,11 @@
         height = 30;
         modules-left = [ "hyprland/workspaces" ];
         modules-center = [ "hyprland/window" ];
-        modules-right = [ "clock" "temperature" "tray" ];
+        modules-right = [
+          "clock"
+          "temperature"
+          "tray"
+        ];
       };
     };
   };
@@ -44,17 +46,34 @@
         "$mod, j, movefocus, d"
         "$mod, k, movefocus, u"
         "$mod, l, movefocus, r"
-      ] ++ (builtins.concatLists (builtins.genList (i:
-        let ws = i + 1;
-        in [
-          "$mod, code:1${toString i}, workspace, ${toString ws}"
-          "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-        ]) 9));
+      ]
+      ++ (builtins.concatLists (
+        builtins.genList (
+          i:
+          let
+            ws = i + 1;
+          in
+          [
+            "$mod, code:1${toString i}, workspace, ${toString ws}"
+            "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+          ]
+        ) 9
+      ));
       exec-once = "waybar & swaync";
-      bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
-      monitor = [ "DP-3,preferred,auto,auto" "HDMI-A-1,preferred,auto,auto" ];
-      general = { no_border_on_floating = true; };
-      decoration = { rounding = 5; };
+      bindm = [
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
+      ];
+      monitor = [
+        "DP-3,preferred,auto,auto"
+        "HDMI-A-1,preferred,auto,auto"
+      ];
+      general = {
+        no_border_on_floating = true;
+      };
+      decoration = {
+        rounding = 5;
+      };
       windowrule = [
         "suppressevent maximize, class:*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
@@ -62,7 +81,5 @@
     };
 
   };
-
-
 
 }
