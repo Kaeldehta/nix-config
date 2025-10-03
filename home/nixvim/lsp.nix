@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   programs.nixvim = {
 
@@ -18,24 +18,27 @@
         biome.enable = true;
         lua_ls.enable = true;
       };
-    };
 
-    keymaps = [
-      {
-        action = {
-          __raw = "vim.lsp.buf.format";
-        };
-        key = "<leader>f";
-        mode = "n";
-      }
-    ];
+      keymaps = [
+        {
+          key = "gd";
+          lspBufAction = "definition";
+          mode = "n";
+        }
+        {
+          key = "gD";
+          lspBufAction = "declaration";
+          mode = "n";
+        }
+      ];
+    };
 
     autoCmd = [
       {
         event = [ "BufWritePost" ];
-        callback = {
-          __raw = "function() vim.lsp.buf.format() end";
-        };
+        callback = config.lib.nixvim.mkRaw "function() vim.lsp.buf.format { 
+          filter = function(client) return client.name ~= 'vtsls' end
+          } end";
       }
     ];
 
@@ -49,6 +52,7 @@
       enable = true;
       settings.highlight.enable = true;
     };
+
 
   };
 
