@@ -13,6 +13,7 @@
     slack
     uv
     pnpm
+    nodejs_20
   ];
 
   home.shellAliases = {
@@ -21,7 +22,6 @@
 
   programs.brave = {
     enable = true;
-    # package = pkgs.brave;
     extensions = [
       { id = "nngceckbapebfimnlniiiahkandclblb"; }
     ];
