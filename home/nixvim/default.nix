@@ -40,7 +40,7 @@
         options.desc = "Prev Buffer";
       }
       {
-        key = "bd";
+        key = "<leader>bd";
         action = "<cmd>bdelete<CR>";
         mode = "n";
         options.desc = "Close current buffer";
