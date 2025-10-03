@@ -1,16 +1,15 @@
-{ pkgs, ... }:
+{  ... }:
 {
-
-  home.packages = with pkgs; [
-    swaynotificationcenter
-  ];
 
   programs.hyprshot.enable = true;
 
   programs.rofi.enable = true;
 
+  catppuccin.waybar.mode = "createLink";
+
   programs.waybar = {
     enable = true;
+    systemd.enable = true;
     settings = {
       mainBar = {
         layer = "top";
@@ -25,6 +24,10 @@
         ];
       };
     };
+  };
+
+  services.swaync = {
+    enable = true;
   };
 
   wayland.windowManager.hyprland = {
@@ -59,7 +62,6 @@
           ]
         ) 9
       ));
-      exec-once = "waybar & swaync";
       bindm = [
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
