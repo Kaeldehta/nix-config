@@ -1,0 +1,56 @@
+(defsrc
+  2    3 4 5 6    8 9 0 - =
+  q    w e r t    i o p [ ]
+  caps a s d f    k l ; ' ret
+         x c v    , . /
+)
+
+(defalias
+  a (tap-hold-release 200 200 a met)
+  r (tap-hold-release 200 200 r alt)
+  s (tap-hold-release 200 200 s ctl)
+  t (tap-hold-release 200 200 t sft)
+
+  n (tap-hold-release 200 200 n sft)
+  e (tap-hold-release 200 200 e ctl)
+  i (tap-hold-release 200 200 i alt)
+  o (tap-hold-release 200 200 o met)
+
+  esc (tap-hold-release 200 200 esc (layer-toggle sym))
+  bspc (tap-hold-release 200 200 bspc (layer-toggle num))
+  ret (tap-hold-release 200 200 ret (layer-toggle sym))
+  spc (tap-hold-release 200 200 spc (layer-toggle nav))
+  red M-S-z
+  pst M-v
+	cpy M-c
+  cut M-x
+  und M-z
+)
+
+(deflayer base
+  q  w  f  p  b       j l u y '
+  @a @r @s @t g      m @n @e @i @o
+  z x c d v       k h , . /
+  esc @spc tab     @ret @bspc del
+)
+
+(deflayer num
+[ 7 8 9 ] XX XX XX XX XX
+; 4 5 6 = XX sft ctl alt met
+grv 1 2 3 \ XX XX XX XX XX
+. 0 - XX XX XX
+)
+
+(deflayer sym
+S-[ S-7 S-8 S-9 S-] XX XX XX XX XX
+S-; S-4 S-5 S-6 S-= XX sft ctl alt met
+S-grv S-1 S-2 S-3 S-\ XX XX XX XX XX
+S-9 S-0 S--  XX XX XX
+)
+
+(deflayer nav
+ XX  XX  XX  XX  XX     @red @pst @cpy @cut @und
+ met alt ctl sft XX     caps  left  down  up    right
+ XX  XX  XX  XX  XX    ins home	pgdn	pgup	end
+ XX XX XX               ret bspc del
+)

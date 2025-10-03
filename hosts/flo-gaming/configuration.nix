@@ -7,6 +7,7 @@
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../../configuration.nix
   ];
 
   # Bootloader.
@@ -23,13 +24,13 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  programs.zsh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
+
   services.displayManager = {
     enable = true;
     ly.enable = true;
   };
-
-  programs.zsh.enable = true;
-  users.defaultUserShell = pkgs.zsh;
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -62,10 +63,6 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [ git wget kitty ];
@@ -86,12 +83,7 @@
     enable = true;
     enable32Bit = true;
   };
-
-  fonts.packages = with pkgs; [
-    nerd-fonts.fira-code
-    nerd-fonts.daddy-time-mono
-  ];
-
+  
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

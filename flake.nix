@@ -1,36 +1,88 @@
 {
-      description = "My system flake";
+  description = "My system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-homebrew = {
+      url = "github:zhaofengli/nix-homebrew";
+    };
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-25.05";
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin = { url = "github:catppuccin/nix/release-25.05"; };
-  };
-
-  outputs = { nixpkgs, home-manager, nixvim, catppuccin, ... }: {
-    nixosConfigurations.flo-gaming = nixpkgs.lib.nixosSystem {
-      modules = [
-        ./hosts/flo-gaming/configuration.nix
-        catppuccin.nixosModules.catppuccin
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.florian.imports = [
-            ./home
-            nixvim.homeModules.nixvim
-            catppuccin.homeModules.catppuccin
-          ];
-        }
-      ];
+    catppuccin = {
+      url = "github:catppuccin/nix";
     };
-
   };
+
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      nixvim,
+      catppuccin,
+      nix-darwin,
+      nix-homebrew,
+      self,
+      ...
+    }:
+    {
+      nixosConfigurations.flo-gaming = nixpkgs.lib.nixosSystem {
+        modules = [
+          ./hosts/flo-gaming/configuration.nix
+          catppuccin.nixosModules.catppuccin
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.florian.imports = [
+              ./hosts/flo-gaming/home
+              nixvim.homeModules.nixvim
+              catppuccin.homeModules.catppuccin
+            ];
+          }
+        ];
+      };
+
+      darwinConfigurations."Florians-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+        system = "aarch64-darwin";
+        specialArgs = { inherit self; };
+        modules = [
+          ./hosts/macbook-pro/configuration.nix
+          nix-homebrew.darwinModules.nix-homebrew
+          {
+            nix-homebrew = {
+              # Install Homebrew under the default prefix
+              enable = true;
+
+              # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+              enableRosetta = true;
+
+              # User owning the Homebrew prefix
+              user = "florianstutzky";
+
+            };
+          }
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.florianstutzky.imports = [
+              ./hosts/macbook-pro/home
+              nixvim.homeModules.nixvim
+              catppuccin.homeModules.catppuccin
+            ];
+          }
+        ];
+      };
+
+    };
 }

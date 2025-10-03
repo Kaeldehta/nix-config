@@ -1,21 +1,28 @@
 { pkgs, ... }:
 
 {
-  imports = [ ./nixvim ./hyprland.nix ];
-
-  home.username = "florian";
-  home.homeDirectory = "/home/florian";
-
+  imports = [ ./nixvim ];
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-    lazygit
-    brave
-    networkmanagerapplet
     discord
     # TODO: Move to yazi extraPackages
     fzf
+    pre-commit
+    postman
+    slack
+    uv
   ];
+
+  programs.chromium = {
+    enable = true;
+    package = pkgs.brave;
+    extensions = [
+      { id = "nngceckbapebfimnlniiiahkandclblb"; }
+    ];
+  };
+
+  programs.lazygit.enable = true;
 
   catppuccin = {
     kitty.enable = true;
@@ -43,14 +50,13 @@
 
   programs.kitty = {
     enable = true;
-    shellIntegration = { enableZshIntegration = true; };
+    shellIntegration = {
+      enableZshIntegration = true;
+    };
     font = {
       size = 16;
       name = "FiraCode Nerd Font";
     };
   };
 
-  home.stateVersion = "25.05";
-
 }
-
