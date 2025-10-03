@@ -7,8 +7,8 @@
 
   programs.hyprshot.enable = true;
 
+  programs.rofi.enable = true;
 
-  programs.wofi.enable = true;
   programs.waybar = {
     enable = true;
     settings = {
@@ -34,7 +34,7 @@
     settings = {
       "$mod" = "SUPER";
       "$terminal" = "kitty";
-      "$menu" = "wofi --show drun";
+      "$menu" = "rofi -show drun";
       "$fileManager" = "$terminal bash -c yazi; exit";
       bind = [
         "$mod, Q, exec, $terminal"
