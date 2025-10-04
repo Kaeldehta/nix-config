@@ -4,7 +4,6 @@
   imports = [ ./nixvim ];
   fonts.fontconfig.enable = true;
 
-  catppuccin.enable = true;
 
   home.packages = with pkgs; [
     discord

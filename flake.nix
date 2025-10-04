@@ -18,9 +18,6 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    catppuccin = {
-      url = "github:catppuccin/nix";
-    };
   };
 
   outputs =
@@ -28,7 +25,6 @@
       nixpkgs,
       home-manager,
       nixvim,
-      catppuccin,
       nix-darwin,
       nix-homebrew,
       self,
@@ -38,7 +34,6 @@
       nixosConfigurations.flo-gaming = nixpkgs.lib.nixosSystem {
         modules = [
           ./hosts/flo-gaming/configuration.nix
-          catppuccin.nixosModules.catppuccin
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -46,7 +41,6 @@
             home-manager.users.florian.imports = [
               ./hosts/flo-gaming/home
               nixvim.homeModules.nixvim
-              catppuccin.homeModules.catppuccin
             ];
           }
         ];
@@ -78,7 +72,6 @@
             home-manager.users.florianstutzky.imports = [
               ./hosts/macbook-pro/home
               nixvim.homeModules.nixvim
-              catppuccin.homeModules.catppuccin
             ];
           }
         ];

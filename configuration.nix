@@ -8,7 +8,6 @@
     "flakes"
   ];
 
-  catppuccin.enable = true;
 
   services.tailscale.enable = true;
 

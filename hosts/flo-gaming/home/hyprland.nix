@@ -1,12 +1,6 @@
 { ... }:
 {
 
-  gtk.enable = true;
-  home.pointerCursor.gtk.enable = true;
-
-  catppuccin.cursors.enable = true;
-  catppuccin.waybar.mode = "createLink";
-
   home.sessionVariables.NIXOS_OZONE_WL = "1";
 
   programs.hyprshot.enable = true;
@@ -16,7 +10,6 @@
   programs.waybar = {
     enable = true;
     systemd.enable = true;
-    style = ./waybar.css;
     settings = {
       mainBar = {
         layer = "top";
@@ -80,7 +73,6 @@
       ];
       general = {
         no_border_on_floating = true;
-        "col.active_border" = "$accent";
       };
       decoration = {
         rounding = 5;
