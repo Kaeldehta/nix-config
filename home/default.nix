@@ -2,8 +2,6 @@
 
 {
   imports = [ ./nixvim ];
-  fonts.fontconfig.enable = true;
-
 
   home.packages = with pkgs; [
     discord
@@ -53,10 +51,6 @@
     enable = true;
     shellIntegration = {
       enableZshIntegration = true;
-    };
-    font = {
-      size = 16;
-      name = "FiraCode Nerd Font";
     };
   };
 

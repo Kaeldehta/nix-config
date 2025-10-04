@@ -8,10 +8,11 @@
     "flakes"
   ];
 
-
   services.tailscale.enable = true;
 
-  fonts.packages = with pkgs; [
-    nerd-fonts.fira-code
-  ];
+  stylix.enable = true;
+
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+
+  stylix.fonts.sizes.terminal = 16;
 }

@@ -18,6 +18,10 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -27,12 +31,14 @@
       nixvim,
       nix-darwin,
       nix-homebrew,
+      stylix,
       self,
       ...
     }:
     {
       nixosConfigurations.flo-gaming = nixpkgs.lib.nixosSystem {
         modules = [
+          stylix.nixosModules.stylix
           ./hosts/flo-gaming/configuration.nix
           home-manager.nixosModules.home-manager
           {
@@ -50,6 +56,7 @@
         system = "aarch64-darwin";
         specialArgs = { inherit self; };
         modules = [
+          stylix.darwinModules.stylix
           ./hosts/macbook-pro/configuration.nix
           nix-homebrew.darwinModules.nix-homebrew
           {

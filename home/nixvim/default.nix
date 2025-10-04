@@ -8,9 +8,14 @@
     ./mini.nix
   ];
 
+  stylix.targets.nixvim.enable = false;
+
+
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
+
+    colorschemes.catppuccin.enable = true;
 
     diagnostic.settings = {
       virtual_lines = {
