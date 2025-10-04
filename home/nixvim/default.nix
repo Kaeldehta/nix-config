@@ -10,12 +10,11 @@
 
   stylix.targets.nixvim.enable = false;
 
-
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
 
-    colorschemes.catppuccin.enable = true;
+    colorschemes.rose-pine.enable = true;
 
     diagnostic.settings = {
       virtual_lines = {
