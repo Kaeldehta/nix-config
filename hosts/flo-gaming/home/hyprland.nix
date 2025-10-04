@@ -1,4 +1,4 @@
-{  ... }:
+{ ... }:
 {
 
   programs.hyprshot.enable = true;

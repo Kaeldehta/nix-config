@@ -5,7 +5,8 @@
 { pkgs, ... }:
 
 {
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../configuration.nix
   ];
@@ -60,12 +61,19 @@
   users.users.florian = {
     isNormalUser = true;
     description = "Florian";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ git wget kitty ];
+  environment.systemPackages = with pkgs; [
+    git
+    wget
+    kitty
+  ];
 
   programs.hyprland.enable = true;
 
@@ -85,7 +93,7 @@
   };
 
   programs.nix-ld.enable = true;
-  
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

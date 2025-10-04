@@ -24,7 +24,7 @@
     enable = true;
     extensions = [
       { id = "nngceckbapebfimnlniiiahkandclblb"; }
-      { id = "hlepfoohegkhhmjieoechaddaejaokhf";}
+      { id = "hlepfoohegkhhmjieoechaddaejaokhf"; }
     ];
   };
 
