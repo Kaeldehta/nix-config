@@ -1,0 +1,14 @@
+@import "catpuccin.css";
+
+#waybar {
+        background transparent;
+        color: @text;
+      }
+      #workspaces {
+        background-color: @surface0;
+      }
+
+      #workspaces button.active {
+        color: @sky;
+      }
+

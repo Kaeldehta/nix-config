@@ -30,7 +30,10 @@
 
   services.displayManager = {
     enable = true;
-    ly.enable = true;
+sddm = {
+    enable = true;
+    wayland.enable = true;
+};
   };
 
   # Set your time zone.
