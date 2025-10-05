@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
 
   nixpkgs.config.allowUnfree = true;
@@ -7,6 +7,8 @@
     "nix-command"
     "flakes"
   ];
+
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
   services.tailscale.enable = true;
 

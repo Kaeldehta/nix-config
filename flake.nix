@@ -32,11 +32,11 @@
       nix-darwin,
       nix-homebrew,
       stylix,
-      self,
       ...
-    }:
+    }@inputs:
     {
       nixosConfigurations.flo-gaming = nixpkgs.lib.nixosSystem {
+        specialArgs = { inherit inputs; };
         modules = [
           stylix.nixosModules.stylix
           ./hosts/flo-gaming/configuration.nix
@@ -54,7 +54,7 @@
 
       darwinConfigurations."Florians-MacBook-Pro" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
-        specialArgs = { inherit self; };
+        specialArgs = { inherit inputs; };
         modules = [
           stylix.darwinModules.stylix
           ./hosts/macbook-pro/configuration.nix

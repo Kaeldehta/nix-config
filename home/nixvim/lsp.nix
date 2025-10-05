@@ -2,15 +2,18 @@
 {
   programs.nixvim = {
 
-    extraPackages = with pkgs; [ nixfmt ];
+    extraPackages = with pkgs; [ nixfmt-rfc-style ];
 
     lsp = {
       servers = {
-        nil_ls = {
+        nixd = {
           enable = true;
           settings = {
             settings = {
-              nil.formatting.command = [ "nixfmt" ];
+              nixd = {
+                formatting.command = [ "nixfmt" ];
+                nixpkgs.expr = "import <nixpkgs> { }";
+              };
             };
           };
         };
