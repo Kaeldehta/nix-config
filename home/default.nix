@@ -11,6 +11,7 @@
     uv
     pnpm
     nodejs_20
+    jdk
   ];
 
   home.shellAliases = {
