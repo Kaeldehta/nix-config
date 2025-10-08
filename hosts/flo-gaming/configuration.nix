@@ -64,6 +64,7 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "gamemode"
     ];
   };
 
@@ -85,6 +86,8 @@
       proton-ge-bin
     ];
   };
+
+  programs.gamemode.enable = true;
 
   security.rtkit.enable = true;
   services.pipewire = {
