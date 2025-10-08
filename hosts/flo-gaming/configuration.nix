@@ -77,7 +77,14 @@
 
   programs.hyprland.enable = true;
 
-  programs.steam.enable = true;
+  programs.steam = {
+
+    enable = true;
+
+    extraCompatPackages = with pkgs; [
+      proton-ge-bin
+    ];
+  };
 
   security.rtkit.enable = true;
   services.pipewire = {
