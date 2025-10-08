@@ -22,9 +22,13 @@
     "usbhid"
     "sd_mod"
   ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.kernelParams = [
+    "video=DP-3:2560x1440@144"
+    "video=HDMI-A-1:1920x1080@60"
+  ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/85cb09d7-6c6b-45ed-bf04-9400d025bfeb";
