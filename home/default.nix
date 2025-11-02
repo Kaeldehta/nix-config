@@ -30,8 +30,10 @@
 
   programs.git = {
     enable = true;
-    userName = "Kaeldehta";
-    userEmail = "flo@visiolab.io";
+    settings.user = {
+      name = "Kaeldehta";
+      email = "flo@visiolab.io";
+    };
     lfs.enable = true;
   };
 

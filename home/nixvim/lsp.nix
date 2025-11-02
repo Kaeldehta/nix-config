@@ -8,7 +8,7 @@
       servers = {
         nixd = {
           enable = true;
-          settings = {
+          config = {
             settings = {
               nixd = {
                 formatting.command = [ "nixfmt" ];
