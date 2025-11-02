@@ -11,6 +11,7 @@
 
   home.packages = with pkgs; [
     networkmanagerapplet
+    path-of-building
   ];
 
   programs.mangohud = {
