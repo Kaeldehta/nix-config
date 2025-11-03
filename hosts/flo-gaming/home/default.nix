@@ -16,7 +16,6 @@
 
   programs.mangohud = {
     enable = true;
-    enableSessionWide = true;
   };
 
   home.stateVersion = "25.05";
