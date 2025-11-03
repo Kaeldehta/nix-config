@@ -11,7 +11,7 @@
 
   home.packages = with pkgs; [
     networkmanagerapplet
-    path-of-building
+    rusty-path-of-building
   ];
 
   programs.mangohud = {
