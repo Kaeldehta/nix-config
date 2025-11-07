@@ -12,7 +12,6 @@
   home.packages = with pkgs; [
     networkmanagerapplet
     rusty-path-of-building
-    modrinth-app
   ];
 
   programs.mangohud = {
