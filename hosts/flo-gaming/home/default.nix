@@ -12,6 +12,7 @@
   home.packages = with pkgs; [
     networkmanagerapplet
     rusty-path-of-building
+    prismlauncher
   ];
 
   programs.mangohud = {
