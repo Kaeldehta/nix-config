@@ -37,7 +37,6 @@
     dock.autohide = true;
     dock.persistent-apps = [
       "${pkgs.slack}/Applications/Slack.app"
-      "/Applications/Brave Browser.app"
       "/Applications/Xcode.app"
     ];
     dock.expose-group-apps = true;
@@ -91,6 +90,7 @@
       "anydesk"
       "arturia-software-center"
       "docker-desktop"
+      "tuist"
     ];
 
     masApps = {
