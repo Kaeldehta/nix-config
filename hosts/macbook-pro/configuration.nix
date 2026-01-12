@@ -86,6 +86,14 @@
   homebrew = {
     enable = true;
 
+    taps = [
+      "anomalyco/tap"
+    ];
+
+    brews = [
+      "opencode"
+    ];
+
     casks = [
       "anydesk"
       "arturia-software-center"
