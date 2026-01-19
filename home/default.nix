@@ -12,7 +12,6 @@
     pnpm
     nodejs_20
     jdk
-    modrinth-app
   ];
 
   home.shellAliases = {

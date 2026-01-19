@@ -2,7 +2,7 @@
 {
   programs.nixvim = {
 
-    extraPackages = with pkgs; [ nixfmt-rfc-style ];
+    extraPackages = with pkgs; [ nixfmt ];
 
     lsp = {
       servers = {
