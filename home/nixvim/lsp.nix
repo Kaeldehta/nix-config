@@ -20,7 +20,6 @@
         vtsls.enable = true;
         biome.enable = true;
         lua_ls.enable = true;
-        sourcekit.enable = true;
       };
 
       keymaps = [
