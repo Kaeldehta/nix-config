@@ -66,6 +66,29 @@
         alt-7 = "workspace 7";
         alt-8 = "workspace 8";
         alt-9 = "workspace 9";
+
+        alt-tab = "workspace-back-and-forth";
+        alt-shift-tab = "move-workspace-to-monitor --wrap-around next";
+        alt-shift-semicolon = "mode service";
+
+        alt-slash = "layout tiles horizontal vertical";
+        alt-comma = "layout accordion horizontal vertical";
+
+        # See: https://nikitabobko.github.io/AeroSpace/commands#focus
+        alt-h = "focus left";
+        alt-j = "focus down";
+        alt-k = "focus up";
+        alt-l = "focus right";
+
+        # See: https://nikitabobko.github.io/AeroSpace/commands#move
+        alt-shift-h = "move left";
+        alt-shift-j = "move down";
+        alt-shift-k = "move up";
+        alt-shift-l = "move right";
+
+        # See: https://nikitabobko.github.io/AeroSpace/commands#resize
+        alt-minus = "resize smart -50";
+        alt-equal = "resize smart +50";
       };
       default-root-container-layout = "tiles";
       default-root-container-orientation = "auto";
