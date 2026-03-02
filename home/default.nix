@@ -23,6 +23,8 @@
     extensions = [
       { id = "nngceckbapebfimnlniiiahkandclblb"; }
       { id = "hlepfoohegkhhmjieoechaddaejaokhf"; }
+      { id = "aeeninnnlhgaojlolnbpljadhbionlal"; }
+      { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; }
     ];
   };
 
