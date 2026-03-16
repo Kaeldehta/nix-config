@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{  pkgs, ... }:
 
 {
   imports = [ ./nixvim ];
@@ -16,6 +16,10 @@
 
   home.shellAliases = {
     lg = "lazygit";
+  };
+
+  home.sessionVariables = {
+      GOOGLE_CLOUD_PROJECT = "ai-dev-6a78";
   };
 
   programs.opencode = {
