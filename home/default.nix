@@ -18,6 +18,10 @@
     lg = "lazygit";
   };
 
+  programs.opencode = {
+    enable = true;
+  };
+
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
