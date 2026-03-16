@@ -18,6 +18,11 @@
     lg = "lazygit";
   };
 
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.brave = {
     enable = true;
     extensions = [
