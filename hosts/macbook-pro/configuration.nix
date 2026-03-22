@@ -20,7 +20,6 @@
     pkgs.python313
     pkgs.fd
     pkgs.jdk
-    pkgs.nodejs_20
     pkgs.pnpm
     pkgs.tree-sitter
     pkgs.raycast

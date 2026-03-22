@@ -1,4 +1,4 @@
-{  pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [ ./nixvim ];
@@ -10,7 +10,7 @@
     slack
     uv
     pnpm
-    nodejs_20
+    nodejs_22
     jdk
   ];
 
@@ -19,7 +19,7 @@
   };
 
   home.sessionVariables = {
-      GOOGLE_CLOUD_PROJECT = "ai-dev-6a78";
+    GOOGLE_CLOUD_PROJECT = "ai-dev-6a78";
   };
 
   programs.opencode = {
