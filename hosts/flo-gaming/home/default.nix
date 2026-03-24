@@ -12,7 +12,9 @@
   home.packages = with pkgs; [
     networkmanagerapplet
     rusty-path-of-building
-    prismlauncher
+    (prismlauncher.override {
+      jdks = [jdk21 jdk25];
+    })
   ];
 
   programs.mangohud = {
