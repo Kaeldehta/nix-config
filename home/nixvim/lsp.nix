@@ -43,7 +43,7 @@
       {
         event = [ "BufWritePost" ];
         callback = config.lib.nixvim.mkRaw "function() vim.lsp.buf.format { 
-          filter = function(client) return client.name ~= 'vtsls' end
+          filter = function(client) return client.name ~= 'vtsls' and client.name ~= 'astro' end
           } end";
       }
     ];
