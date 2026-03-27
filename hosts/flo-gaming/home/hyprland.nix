@@ -41,7 +41,6 @@
       "$fileManager" = "$terminal bash -c yazi; exit";
       bind = [
         "$mod, Q, exec, $terminal"
-        "$mod, M, exit,"
         "$mod, space, exec, $menu"
         "$mod, C, killactive,"
         "$mod, E, exec, $fileManager"
