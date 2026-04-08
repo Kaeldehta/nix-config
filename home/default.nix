@@ -22,8 +22,18 @@
     GOOGLE_CLOUD_PROJECT = "ai-dev-6a78";
   };
 
+  programs.mcp = {
+    enable = true;
+    servers = {
+      linear = {
+        url = "https://mcp.linear.app/mcp";
+      };
+    };
+  };
+
   programs.opencode = {
     enable = true;
+    enableMcpIntegration = true;
   };
 
   programs.zoxide = {
