@@ -8,6 +8,7 @@
     pre-commit
     postman
     slack
+    stripe-cli
     uv
     pnpm
     nodejs_22
