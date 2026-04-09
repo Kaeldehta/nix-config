@@ -13,6 +13,7 @@
     pnpm
     nodejs_22
     jdk
+    gh
   ];
 
   home.shellAliases = {
