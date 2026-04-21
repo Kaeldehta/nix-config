@@ -20,10 +20,6 @@
     lg = "lazygit";
   };
 
-  home.sessionVariables = {
-    GOOGLE_CLOUD_PROJECT = "ai-dev-6a78";
-  };
-
   programs.mcp = {
     enable = true;
     servers = {
