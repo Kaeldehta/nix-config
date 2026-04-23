@@ -23,6 +23,7 @@
       local basename = vim.fs.basename(cwd)
 
       _99.setup({
+        model = "anthropic/claude-opus-4-7",
         logger = {
           level = _99.DEBUG,
           path = "/tmp/" .. basename .. ".99.debug",
