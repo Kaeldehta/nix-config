@@ -108,7 +108,6 @@
   homebrew = {
     enable = true;
 
-    
     casks = [
       "anydesk"
       "arturia-software-center"
@@ -116,11 +115,11 @@
       "tuist"
     ];
 
-    masApps = {
-      "Xcode" = 497799835;
-      "Logic Pro" = 634148309;
-      "MainStage" = 634159523;
-    };
+    # masApps = {
+    #   "Xcode" = 497799835;
+    #   "Logic Pro" = 634148309;
+    #   "MainStage" = 634159523;
+    # };
 
     onActivation.cleanup = "zap";
     onActivation.autoUpdate = true;
