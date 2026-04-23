@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
 
@@ -72,6 +72,17 @@
       web-devicons.enable = true;
     };
 
+    extraPlugins = [
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "99";
+        src = pkgs.fetchFromGitHub {
+          owner = "ThePrimeagen";
+          repo = "99";
+          rev = "0172d3caae2d8b967c9d47aa7557295f1481e5df";
+          hash = "sha256-ppFQaLSie9tSm2nlTrZPU47QyOaeqNMQjJf4vaIXgFo=";
+        };
+      })
+    ];
   };
 
 }
