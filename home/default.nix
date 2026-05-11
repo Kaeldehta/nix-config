@@ -14,6 +14,8 @@
     nodejs_22
     jdk
     gh
+    terraform
+    terragrunt
   ];
 
   home.shellAliases = {
