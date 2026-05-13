@@ -31,6 +31,11 @@
     };
   };
 
+  programs.mise = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.opencode = {
     enable = true;
     enableMcpIntegration = true;
