@@ -117,7 +117,6 @@
       "arturia-software-center"
       "cmux"
       "docker-desktop"
-      "tuist"
     ];
 
     # masApps = {
