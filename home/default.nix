@@ -12,7 +12,7 @@
     uv
     pnpm
     nodejs_22
-    jdk
+    jdk25
     gh
     terraform
     terragrunt
