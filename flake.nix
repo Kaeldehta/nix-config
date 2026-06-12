@@ -22,6 +22,10 @@
       url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    claude-code = {
+      url = "github:sadjow/claude-code-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -32,12 +36,14 @@
       nix-darwin,
       nix-homebrew,
       stylix,
+      claude-code,
       ...
     }@inputs:
     {
       nixosConfigurations.flo-gaming = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
+          { nixpkgs.overlays = [ claude-code.overlays.default ]; }
           stylix.nixosModules.stylix
           ./hosts/flo-gaming/configuration.nix
           home-manager.nixosModules.home-manager
@@ -56,6 +62,7 @@
         system = "aarch64-darwin";
         specialArgs = { inherit inputs; };
         modules = [
+          { nixpkgs.overlays = [ claude-code.overlays.default ]; }
           stylix.darwinModules.stylix
           ./hosts/macbook-pro/configuration.nix
           nix-homebrew.darwinModules.nix-homebrew

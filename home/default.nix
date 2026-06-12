@@ -36,6 +36,11 @@
     enableZshIntegration = true;
   };
 
+  programs.claude-code = {
+  enable = true;
+  enableMcpIntegration = true;
+  };
+
   programs.opencode = {
     enable = true;
     enableMcpIntegration = true;
