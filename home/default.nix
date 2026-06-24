@@ -69,6 +69,11 @@
       name = "Kaeldehta";
       email = "flo@visiolab.io";
     };
+    signing = {
+      key = "~/.ssh/id_ed25519.pub";
+      format = "ssh";
+      signByDefault = true;
+    };
     lfs.enable = true;
   };
 
