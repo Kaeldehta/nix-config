@@ -37,8 +37,8 @@
   };
 
   programs.claude-code = {
-  enable = true;
-  enableMcpIntegration = true;
+    enable = true;
+    enableMcpIntegration = true;
   };
 
   programs.opencode = {
@@ -65,9 +65,12 @@
 
   programs.git = {
     enable = true;
-    settings.user = {
-      name = "Kaeldehta";
-      email = "flo@visiolab.io";
+    settings = {
+      user = {
+        name = "Kaeldehta";
+        email = "flo@visiolab.io";
+      };
+      init.defaultBranch = "main";
     };
     signing = {
       key = "~/.ssh/id_ed25519.pub";
