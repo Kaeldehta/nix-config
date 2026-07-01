@@ -8,28 +8,22 @@
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = [
-    pkgs.vim
-    pkgs.rustup
-    pkgs.ripgrep
-    pkgs.fzf
-    pkgs.ast-grep
-    pkgs.kanata
-    pkgs.git-lfs
-    pkgs.ruff
-    pkgs.python313
-    pkgs.fd
-    pkgs.jdk
-    pkgs.pnpm
-    pkgs.tree-sitter
-    pkgs.raycast
-    pkgs.stow
-    pkgs.typescript-language-server
-    pkgs.biome
-    pkgs.claude-code
-    pkgs.nil
-    pkgs.nixpkgs-fmt
-    pkgs.google-cloud-sdk
+  environment.systemPackages = with pkgs; [
+    vim
+    rustup
+    ripgrep
+    fzf
+    ast-grep
+    kanata
+    git-lfs
+    ruff
+    python313
+    fd
+    jdk
+    raycast
+    nil
+    nixpkgs-fmt
+    google-cloud-sdk
   ];
 
   system.defaults = {
@@ -111,7 +105,6 @@
     casks = [
       "anydesk"
       "arturia-software-center"
-      "docker-desktop"
     ];
 
     # masApps = {

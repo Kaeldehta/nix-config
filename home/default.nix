@@ -16,6 +16,7 @@
     gh
     terraform
     terragrunt
+    pnpm
   ];
 
   home.shellAliases = {
