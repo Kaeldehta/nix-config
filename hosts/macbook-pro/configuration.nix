@@ -108,14 +108,9 @@
   homebrew = {
     enable = true;
 
-    taps = [
-      "manaflow-ai/cmux"
-    ];
-
     casks = [
       "anydesk"
       "arturia-software-center"
-      "cmux"
       "docker-desktop"
     ];
 
