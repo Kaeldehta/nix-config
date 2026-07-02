@@ -102,4 +102,14 @@
     };
   };
 
+  programs.jujutsu = {
+    enable = true;
+    settings = {
+user = {
+      email = "flo@visiolab.io";
+      name = "Kaeldehta";
+    };
+    };
+      };
+
 }
