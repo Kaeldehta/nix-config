@@ -51,7 +51,14 @@
             };
           };
         };
-        vtsls.enable = true;
+        vtsls = {
+          enable = true;
+          config = {
+            settings = {
+              vtsls.autoUseWorkspaceTsdk = true;
+            };
+          };
+        };
         biome.enable = true;
         lua_ls.enable = true;
         astro.enable = true;
