@@ -40,6 +40,14 @@
   programs.claude-code = {
     enable = true;
     enableMcpIntegration = true;
+    settings = {
+      autoMemoryEnabled = false;
+
+      enabledPlugins = {
+        "swift-lsp@claude-plugins-official" = true;
+        "typescript-lsp@claude-plugins-official" = true;
+      };
+    };
   };
 
   programs.opencode = {
@@ -105,11 +113,11 @@
   programs.jujutsu = {
     enable = true;
     settings = {
-user = {
-      email = "flo@visiolab.io";
-      name = "Kaeldehta";
-    };
-    };
+      user = {
+        email = "flo@visiolab.io";
+        name = "Kaeldehta";
       };
+    };
+  };
 
 }
