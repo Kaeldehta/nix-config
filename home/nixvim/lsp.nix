@@ -57,18 +57,30 @@
         tsc = {
           enable = true;
           config = {
-            # Prefer a project-local binary when present so Effect's
-            # `@effect/language-service` tsgo patch (which patches the local
-            # install) is picked up. Fall back to the Nix-pinned tsc otherwise.
+            # Pick the language-server binary, preferring a project-local one so
+            # that e.g. Effect's `effect-tsgo patch --typescript` (which patches
+            # the local `typescript` install in place) is used, giving the Effect
+            # language service.
+            #
+            #   1. local `node_modules/.bin/tsgo`  (native-preview style install)
+            #   2. local `node_modules/.bin/tsc`   ONLY if it reports v7+, i.e. it
+            #      is the Go/native compiler that speaks `--lsp`. A local `tsc`
+            #      from classic TypeScript (<=6) has no LSP mode and exits 1, so
+            #      it must be skipped (e.g. TS 5.x in a pnpm monorepo package).
+            #   3. the Nix-pinned typescript-go binary as a fallback.
             cmd = config.lib.nixvim.mkRaw ''
               function(dispatchers, cfg)
                 local cmd = "${pkgs.typescript-go}/bin/tsc"
-                for _, bin in ipairs({ "tsgo", "tsc" }) do
-                  if (cfg or {}).root_dir then
-                    local local_cmd = vim.fs.joinpath(cfg.root_dir, "node_modules/.bin", bin)
-                    if vim.fn.executable(local_cmd) == 1 then
-                      cmd = local_cmd
-                      break
+                if (cfg or {}).root_dir then
+                  local local_tsgo = vim.fs.joinpath(cfg.root_dir, "node_modules/.bin", "tsgo")
+                  local local_tsc = vim.fs.joinpath(cfg.root_dir, "node_modules/.bin", "tsc")
+                  if vim.fn.executable(local_tsgo) == 1 then
+                    cmd = local_tsgo
+                  elseif vim.fn.executable(local_tsc) == 1 then
+                    local version = vim.fn.system({ local_tsc, "--version" })
+                    local major = tonumber((version or ""):match("Version (%d+)"))
+                    if major and major >= 7 then
+                      cmd = local_tsc
                     end
                   end
                 end
