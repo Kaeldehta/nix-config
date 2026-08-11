@@ -51,12 +51,44 @@
             };
           };
         };
-        vtsls = {
+        # TypeScript 7 native LSP (typescript-go; `tsc`/`tsgo` are the same binary).
+        # Not known to nvim-lspconfig,
+        # so we spell out cmd/filetypes/root_markers ourselves.
+        tsc = {
           enable = true;
           config = {
-            settings = {
-              vtsls.autoUseWorkspaceTsdk = true;
-            };
+            # Prefer a project-local binary when present so Effect's
+            # `@effect/language-service` tsgo patch (which patches the local
+            # install) is picked up. Fall back to the Nix-pinned tsc otherwise.
+            cmd = config.lib.nixvim.mkRaw ''
+              function(dispatchers, cfg)
+                local cmd = "${pkgs.typescript-go}/bin/tsc"
+                for _, bin in ipairs({ "tsgo", "tsc" }) do
+                  if (cfg or {}).root_dir then
+                    local local_cmd = vim.fs.joinpath(cfg.root_dir, "node_modules/.bin", bin)
+                    if vim.fn.executable(local_cmd) == 1 then
+                      cmd = local_cmd
+                      break
+                    end
+                  end
+                end
+                return vim.lsp.rpc.start({ cmd, "--lsp", "--stdio" }, dispatchers)
+              end
+            '';
+            filetypes = [
+              "javascript"
+              "javascriptreact"
+              "javascript.jsx"
+              "typescript"
+              "typescriptreact"
+              "typescript.tsx"
+            ];
+            root_markers = [
+              "tsconfig.json"
+              "jsconfig.json"
+              "package.json"
+              ".git"
+            ];
           };
         };
         biome.enable = true;
@@ -84,7 +116,7 @@
       {
         event = [ "BufWritePost" ];
         callback = config.lib.nixvim.mkRaw "function() vim.lsp.buf.format { 
-          filter = function(client) return client.name ~= 'vtsls' and client.name ~= 'astro' and client.name ~= 'jdtls' end
+          filter = function(client) return client.name == 'nixd' or client.name == 'biome' or client.name == 'lua_ls' end
           } end";
       }
     ];
