@@ -7,6 +7,7 @@
     ./oil.nix
     ./lsp.nix
     ./mini.nix
+    ./snacks.nix
   ];
 
   stylix.targets.nixvim.enable = false;
@@ -70,7 +71,6 @@
       ts-comments.enable = true;
       ts-autotag.enable = true;
       bufferline.enable = true;
-      web-devicons.enable = true;
     };
 
   };

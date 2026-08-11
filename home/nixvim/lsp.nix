@@ -108,59 +108,48 @@
         astro.enable = true;
       };
 
-      # All of these go through mini.pick rather than the built-in quickfix or
-      # location list. `MiniExtra.pickers.lsp` is registered in
-      # `MiniPick.registry` (see plugins.mini.modules.extra), so `:Pick lsp` is
-      # enough and these stay plain command strings.
-      #
-      # These shadow the built-in `grr`/`gri`/`grt`/`gO` buffer-locally on
-      # attach. The tradeoff versus the built-ins: a lone result still opens the
-      # picker instead of jumping straight there, and nothing is pushed onto the
-      # tagstack (no `<C-t>`). mini sets the `'` mark, so `<C-o>` still works.
       keymaps = [
         {
           key = "gd";
-          action = "<cmd>Pick lsp scope='definition'<CR>";
+          action = config.lib.nixvim.mkRaw "function() Snacks.picker.lsp_definitions() end";
           mode = "n";
           options.desc = "Go to definition";
         }
         {
           key = "gD";
-          action = "<cmd>Pick lsp scope='declaration'<CR>";
+          action = config.lib.nixvim.mkRaw "function() Snacks.picker.lsp_declarations() end";
           mode = "n";
           options.desc = "Go to declaration";
         }
         {
           key = "grr";
-          action = "<cmd>Pick lsp scope='references'<CR>";
+          action = config.lib.nixvim.mkRaw "function() Snacks.picker.lsp_references() end";
           mode = "n";
           options.desc = "Show references";
         }
         {
           key = "gri";
-          action = "<cmd>Pick lsp scope='implementation'<CR>";
+          action = config.lib.nixvim.mkRaw "function() Snacks.picker.lsp_implementations() end";
           mode = "n";
           options.desc = "Go to implementation";
         }
         {
           key = "grt";
-          action = "<cmd>Pick lsp scope='type_definition'<CR>";
+          action = config.lib.nixvim.mkRaw "function() Snacks.picker.lsp_type_definitions() end";
           mode = "n";
           options.desc = "Go to type definition";
         }
         {
           key = "gO";
-          action = "<cmd>Pick lsp scope='document_symbol'<CR>";
+          action = config.lib.nixvim.mkRaw "function() Snacks.picker.lsp_symbols() end";
           mode = "n";
           options.desc = "Document symbols";
         }
         {
-          # Live variant: re-queries the server on each keystroke instead of
-          # filtering one fixed result set.
           key = "<leader>ls";
-          action = "<cmd>Pick lsp scope='workspace_symbol_live'<CR>";
+          action = config.lib.nixvim.mkRaw "function() Snacks.picker.lsp_workspace_symbols() end";
           mode = "n";
-          options.desc = "Workspace symbols (live)";
+          options.desc = "Workspace symbols";
         }
       ];
     };
