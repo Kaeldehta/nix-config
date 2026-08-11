@@ -133,6 +133,24 @@
       }
     ];
 
+    # Route every reference lookup through mini.pick instead of the quickfix
+    # list, so the built-in `grr`, which-key and any plugin asking for
+    # references all get the picker without needing their own keymap.
+    #
+    # Neovim only takes `on_list` per call (`:h vim.lsp.ListOpts`) and has no
+    # global default for it, so wrapping the function is the only way to make
+    # this automatic. MiniExtra's picker calls back into `vim.lsp.buf.references`
+    # with its own `on_list`, which is what stops the wrapper from recursing.
+    extraConfigLua = ''
+      local builtin_references = vim.lsp.buf.references
+      vim.lsp.buf.references = function(context, opts)
+        if (opts or {}).on_list ~= nil then
+          return builtin_references(context, opts)
+        end
+        return require("mini.extra").pickers.lsp({ scope = "references" })
+      end
+    '';
+
     plugins.lspconfig.enable = true;
 
     plugins.blink-cmp = {

@@ -29,6 +29,8 @@
       modules = {
         pick = { };
         pairs = { };
+        # Extra pickers on top of mini.pick (LSP references, symbols, ...).
+        extra = { };
       };
     };
 
