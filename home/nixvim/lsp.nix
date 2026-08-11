@@ -108,18 +108,59 @@
         astro.enable = true;
       };
 
+      # All of these go through mini.pick rather than the built-in quickfix or
+      # location list. `MiniExtra.pickers.lsp` is registered in
+      # `MiniPick.registry` (see plugins.mini.modules.extra), so `:Pick lsp` is
+      # enough and these stay plain command strings.
+      #
+      # These shadow the built-in `grr`/`gri`/`grt`/`gO` buffer-locally on
+      # attach. The tradeoff versus the built-ins: a lone result still opens the
+      # picker instead of jumping straight there, and nothing is pushed onto the
+      # tagstack (no `<C-t>`). mini sets the `'` mark, so `<C-o>` still works.
       keymaps = [
         {
           key = "gd";
-          lspBufAction = "definition";
+          action = "<cmd>Pick lsp scope='definition'<CR>";
           mode = "n";
           options.desc = "Go to definition";
         }
         {
           key = "gD";
-          lspBufAction = "declaration";
+          action = "<cmd>Pick lsp scope='declaration'<CR>";
           mode = "n";
           options.desc = "Go to declaration";
+        }
+        {
+          key = "grr";
+          action = "<cmd>Pick lsp scope='references'<CR>";
+          mode = "n";
+          options.desc = "Show references";
+        }
+        {
+          key = "gri";
+          action = "<cmd>Pick lsp scope='implementation'<CR>";
+          mode = "n";
+          options.desc = "Go to implementation";
+        }
+        {
+          key = "grt";
+          action = "<cmd>Pick lsp scope='type_definition'<CR>";
+          mode = "n";
+          options.desc = "Go to type definition";
+        }
+        {
+          key = "gO";
+          action = "<cmd>Pick lsp scope='document_symbol'<CR>";
+          mode = "n";
+          options.desc = "Document symbols";
+        }
+        {
+          # Live variant: re-queries the server on each keystroke instead of
+          # filtering one fixed result set.
+          key = "<leader>ls";
+          action = "<cmd>Pick lsp scope='workspace_symbol_live'<CR>";
+          mode = "n";
+          options.desc = "Workspace symbols (live)";
         }
       ];
     };
@@ -132,24 +173,6 @@
           } end";
       }
     ];
-
-    # Route every reference lookup through mini.pick instead of the quickfix
-    # list, so the built-in `grr`, which-key and any plugin asking for
-    # references all get the picker without needing their own keymap.
-    #
-    # Neovim only takes `on_list` per call (`:h vim.lsp.ListOpts`) and has no
-    # global default for it, so wrapping the function is the only way to make
-    # this automatic. MiniExtra's picker calls back into `vim.lsp.buf.references`
-    # with its own `on_list`, which is what stops the wrapper from recursing.
-    extraConfigLua = ''
-      local builtin_references = vim.lsp.buf.references
-      vim.lsp.buf.references = function(context, opts)
-        if (opts or {}).on_list ~= nil then
-          return builtin_references(context, opts)
-        end
-        return require("mini.extra").pickers.lsp({ scope = "references" })
-      end
-    '';
 
     plugins.lspconfig.enable = true;
 
