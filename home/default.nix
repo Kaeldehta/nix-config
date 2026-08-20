@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [ ./nixvim ];
@@ -117,6 +117,10 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    # Vite+ (installed outside nix) sets PATH, a `vp` wrapper and completions.
+    initContent = lib.mkAfter ''
+      [ -f "$HOME/.vite-plus/env" ] && . "$HOME/.vite-plus/env"
+    '';
   };
 
   programs.yazi = {
