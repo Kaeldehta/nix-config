@@ -106,6 +106,12 @@
         biome.enable = true;
         lua_ls.enable = true;
         astro.enable = true;
+        tinymist = {
+          enable = true;
+          config.settings = {
+            formatterMode = "typstyle";
+          };
+        };
       };
 
       keymaps = [
@@ -164,6 +170,39 @@
     ];
 
     plugins.lspconfig.enable = true;
+
+    # Live preview for Typst. Drives its own `tinymist preview` server (separate
+    # from the LSP above) and talks to it over websocat, which is what gives
+    # bidirectional cursor<->preview sync. Both binaries come from Nix, so the
+    # plugin never tries to download them at runtime.
+    plugins.typst-preview = {
+      enable = true;
+      settings = {
+        follow_cursor = true;
+        invert_colors = "auto";
+      };
+    };
+
+    keymaps = [
+      {
+        key = "<leader>tp";
+        action = "<cmd>TypstPreviewToggle<CR>";
+        mode = "n";
+        options.desc = "Typst: Toggle live preview";
+      }
+      {
+        key = "<leader>tf";
+        action = "<cmd>TypstPreviewFollowCursorToggle<CR>";
+        mode = "n";
+        options.desc = "Typst: Toggle follow cursor";
+      }
+      {
+        key = "<leader>ts";
+        action = "<cmd>TypstPreviewSyncCursor<CR>";
+        mode = "n";
+        options.desc = "Typst: Sync preview to cursor";
+      }
+    ];
 
     plugins.blink-cmp = {
       enable = true;
