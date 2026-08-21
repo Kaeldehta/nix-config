@@ -162,10 +162,21 @@
 
     autoCmd = [
       {
-        event = [ "BufWritePost" ];
-        callback = config.lib.nixvim.mkRaw "function() vim.lsp.buf.format { 
-          filter = function(client) return client.name == 'nixd' or client.name == 'biome' or client.name == 'lua_ls' end
-          } end";
+        event = [ "BufWritePre" ];
+        callback = config.lib.nixvim.mkRaw ''
+          function(args)
+            local formatters = {
+              nixd = true,
+              biome = true,
+              lua_ls = true,
+              tinymist = true,
+            }
+            vim.lsp.buf.format {
+              bufnr = args.buf,
+              filter = function(client) return formatters[client.name] end,
+            }
+          end
+        '';
       }
     ];
 
