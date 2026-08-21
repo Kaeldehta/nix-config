@@ -190,7 +190,7 @@
       enable = true;
       settings = {
         follow_cursor = true;
-        invert_colors = "auto";
+        invert_colors = "never";
       };
     };
 
