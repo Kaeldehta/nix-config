@@ -2,7 +2,12 @@
 {
   programs.nixvim = {
 
-    extraPackages = with pkgs; [ nixfmt ];
+    extraPackages = with pkgs; [
+      nixfmt
+      oxlint
+      oxfmt
+      tsgolint
+    ];
 
     # JDT LS (Java) — invoked automatically by plugins.jdtls below for *.java files.
     # We run it under JDK 25 to match `.java-version` used by GTNH RFG-based projects
@@ -104,6 +109,8 @@
           };
         };
         biome.enable = true;
+        oxlint.enable = true;
+        oxfmt.enable = true;
         lua_ls.enable = true;
         astro.enable = true;
         tinymist = {
@@ -165,16 +172,19 @@
         event = [ "BufWritePre" ];
         callback = config.lib.nixvim.mkRaw ''
           function(args)
-            local formatters = {
-              nixd = true,
-              biome = true,
-              lua_ls = true,
-              tinymist = true,
-            }
-            vim.lsp.buf.format {
-              bufnr = args.buf,
-              filter = function(client) return formatters[client.name] end,
-            }
+            -- Highest-priority attached client formats the buffer, so a project
+            -- with an oxfmt config is not formatted a second time by biome.
+            local formatters = { "oxfmt", "biome", "nixd", "lua_ls", "tinymist" }
+            local attached = {}
+            for _, client in ipairs(vim.lsp.get_clients { bufnr = args.buf }) do
+              attached[client.name] = true
+            end
+            for _, name in ipairs(formatters) do
+              if attached[name] then
+                vim.lsp.buf.format { bufnr = args.buf, name = name }
+                return
+              end
+            end
           end
         '';
       }
