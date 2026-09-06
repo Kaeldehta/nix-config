@@ -48,6 +48,15 @@
         "typescript-lsp@claude-plugins-official" = true;
       };
 
+      extraKnownMarketplaces = {
+        foldkit = {
+          source = {
+            source = "github";
+            repo = "foldkit/foldkit";
+          };
+        };
+      };
+
       permissions = {
     deny = [
       "EnterPlanMode"
