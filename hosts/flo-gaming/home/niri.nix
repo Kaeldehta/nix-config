@@ -79,6 +79,17 @@ in
       # only reaches processes started from a login shell.
       environment.NIXOS_OZONE_WL = "1";
 
+      _children = [
+        {
+          window-rule._children = [
+            { match._props.app-id = "^yazi$"; }
+            { open-floating = true; }
+            { default-column-width._children = [ { proportion = 0.6; } ]; }
+            { default-window-height._children = [ { proportion = 0.7; } ]; }
+          ];
+        }
+      ];
+
       binds = {
         "Mod+Shift+Slash".show-hotkey-overlay = { };
 
@@ -91,6 +102,9 @@ in
           _props.hotkey-overlay-title = "Open the File Manager";
           spawn = [
             "kitty"
+            "--app-id=yazi"
+            "-o"
+            "confirm_os_window_close=0"
             "-e"
             "yazi"
           ];

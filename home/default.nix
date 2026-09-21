@@ -138,13 +138,6 @@
     '';
   };
 
-  programs.yazi = {
-    enable = true;
-    enableZshIntegration = true;
-    extraPackages = with pkgs; [ fzf ];
-    shellWrapperName = "y";
-  };
-
   programs.kitty = {
     enable = true;
     shellIntegration = {
