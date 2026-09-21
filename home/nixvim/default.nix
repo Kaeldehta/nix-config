@@ -3,7 +3,6 @@
 {
 
   imports = [
-    ./99.nix
     ./oil.nix
     ./lsp.nix
     ./mini.nix

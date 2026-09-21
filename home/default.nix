@@ -43,6 +43,12 @@
     settings = {
       autoMemoryEnabled = false;
 
+      attribution = {
+        commit = "";
+        pr = "";
+        sessionUrl = false;
+      };
+
       enabledPlugins = {
         "swift-lsp@claude-plugins-official" = true;
         "typescript-lsp@claude-plugins-official" = true;
@@ -58,27 +64,27 @@
       };
 
       permissions = {
-    deny = [
-      "EnterPlanMode"
-      "ExitPlanMode"
-      "DesignSync"
-      "NotebookEdit"
-      "SendMessage"
-      "PushNotification"
-      "RemoteTrigger"
-      "ReportFindings"
-      "ScheduleWakeup"
-      "AskUserQuestion"
-      "CronCreate"
-      "CronDelete"
-      "CronList"
-    ];
-  };
-  disableBundledSkills = true;
-  disableWorkflows =  true;
-  disableRemoteControl = true;
-  disableClaudeAiConnectors = true;
-  disableArtifact = true;
+        deny = [
+          "EnterPlanMode"
+          "ExitPlanMode"
+          "DesignSync"
+          "NotebookEdit"
+          "SendMessage"
+          "PushNotification"
+          "RemoteTrigger"
+          "ReportFindings"
+          "ScheduleWakeup"
+          "AskUserQuestion"
+          "CronCreate"
+          "CronDelete"
+          "CronList"
+        ];
+      };
+      disableBundledSkills = true;
+      disableWorkflows = true;
+      disableRemoteControl = true;
+      disableClaudeAiConnectors = true;
+      disableArtifact = true;
     };
   };
 

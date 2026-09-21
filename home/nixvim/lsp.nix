@@ -237,6 +237,38 @@
     plugins.treesitter = {
       enable = true;
       highlight.enable = true;
+      grammarPackages = with config.programs.nixvim.plugins.treesitter.package.builtGrammars; [
+        astro
+        bash
+        css
+        diff
+        git_config
+        git_rebase
+        gitcommit
+        gitignore
+        html
+        java
+        javascript
+        jsdoc
+        json
+        kdl
+        lua
+        luadoc
+        markdown
+        markdown_inline
+        nix
+        query
+        regex
+        scss
+        toml
+        tsx
+        typescript
+        typst
+        vim
+        vimdoc
+        yaml
+        zsh
+      ];
     };
 
   };
