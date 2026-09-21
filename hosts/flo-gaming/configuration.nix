@@ -66,6 +66,7 @@
       "networkmanager"
       "wheel"
       "gamemode"
+      "i2c"
     ];
   };
 
@@ -75,6 +76,7 @@
     git
     wget
     kitty
+    ddcutil
   ];
 
   programs.niri.enable = true;
@@ -102,6 +104,16 @@
     enable = true;
     enable32Bit = true;
   };
+
+  hardware.i2c.enable = true;
+
+  hardware.bluetooth.enable = true;
+
+  services.udisks2.enable = true;
+
+  services.gvfs.enable = true;
+
+  services.upower.enable = true;
 
   programs.nix-ld.enable = true;
 
