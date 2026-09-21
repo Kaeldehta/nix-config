@@ -75,7 +75,7 @@
             #   3. the Nix-pinned typescript-go binary as a fallback.
             cmd = config.lib.nixvim.mkRaw ''
               function(dispatchers, cfg)
-                local cmd = "${pkgs.typescript-go}/bin/tsc"
+                local cmd = "${pkgs.typescript}/bin/tsc"
                 if (cfg or {}).root_dir then
                   local local_tsgo = vim.fs.joinpath(cfg.root_dir, "node_modules/.bin", "tsgo")
                   local local_tsc = vim.fs.joinpath(cfg.root_dir, "node_modules/.bin", "tsc")
