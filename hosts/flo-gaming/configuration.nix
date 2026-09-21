@@ -28,9 +28,10 @@
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
-  services.displayManager = {
+  # Pulls in greetd, creates /var/lib/noctalia-greeter and enables accounts-daemon.
+  services.displayManager.noctalia-greeter = {
     enable = true;
-    ly.enable = true;
+    settings.keyboard.layout = "us";
   };
 
   # Set your time zone.
@@ -76,7 +77,7 @@
     kitty
   ];
 
-  programs.hyprland.enable = true;
+  programs.niri.enable = true;
 
   programs.steam = {
 
