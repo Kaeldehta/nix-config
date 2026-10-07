@@ -56,58 +56,7 @@
             };
           };
         };
-        # TypeScript 7 native LSP (typescript-go; `tsc`/`tsgo` are the same binary).
-        # Not known to nvim-lspconfig,
-        # so we spell out cmd/filetypes/root_markers ourselves.
-        tsc = {
-          enable = true;
-          config = {
-            # Pick the language-server binary, preferring a project-local one so
-            # that e.g. Effect's `effect-tsgo patch --typescript` (which patches
-            # the local `typescript` install in place) is used, giving the Effect
-            # language service.
-            #
-            #   1. local `node_modules/.bin/tsgo`  (native-preview style install)
-            #   2. local `node_modules/.bin/tsc`   ONLY if it reports v7+, i.e. it
-            #      is the Go/native compiler that speaks `--lsp`. A local `tsc`
-            #      from classic TypeScript (<=6) has no LSP mode and exits 1, so
-            #      it must be skipped (e.g. TS 5.x in a pnpm monorepo package).
-            #   3. the Nix-pinned typescript-go binary as a fallback.
-            cmd = config.lib.nixvim.mkRaw ''
-              function(dispatchers, cfg)
-                local cmd = "${pkgs.typescript}/bin/tsc"
-                if (cfg or {}).root_dir then
-                  local local_tsgo = vim.fs.joinpath(cfg.root_dir, "node_modules/.bin", "tsgo")
-                  local local_tsc = vim.fs.joinpath(cfg.root_dir, "node_modules/.bin", "tsc")
-                  if vim.fn.executable(local_tsgo) == 1 then
-                    cmd = local_tsgo
-                  elseif vim.fn.executable(local_tsc) == 1 then
-                    local version = vim.fn.system({ local_tsc, "--version" })
-                    local major = tonumber((version or ""):match("Version (%d+)"))
-                    if major and major >= 7 then
-                      cmd = local_tsc
-                    end
-                  end
-                end
-                return vim.lsp.rpc.start({ cmd, "--lsp", "--stdio" }, dispatchers)
-              end
-            '';
-            filetypes = [
-              "javascript"
-              "javascriptreact"
-              "javascript.jsx"
-              "typescript"
-              "typescriptreact"
-              "typescript.tsx"
-            ];
-            root_markers = [
-              "tsconfig.json"
-              "jsconfig.json"
-              "package.json"
-              ".git"
-            ];
-          };
-        };
+        tsc.enable = true;
         biome.enable = true;
         oxlint.enable = true;
         oxfmt.enable = true;
