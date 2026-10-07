@@ -1,4 +1,21 @@
 { pkgs, config, ... }:
+let
+  # Vite+ keeps the oxlint/oxfmt config in vite.config.ts, which the tools only
+  # read when Vite+ launched them, so run the same server through `vp` there.
+  oxcCmd =
+    subcommand: bin:
+    config.lib.nixvim.mkRaw ''
+      function(dispatchers, lsp_config)
+        local root = (lsp_config or {}).root_dir
+        local vp = vim.env.HOME .. "/.vite-plus/bin/vp"
+        if root and vim.fn.executable(vp) == 1 and vim.fn.glob(root .. "/vite.config.{ts,mts,cts,js,mjs,cjs}") ~= "" then
+          -- `vp` resolves the project-local vite-plus relative to its cwd.
+          return vim.lsp.rpc.start({ vp, "${subcommand}", "--lsp" }, dispatchers, { cwd = root })
+        end
+        return vim.lsp.rpc.start({ "${bin}", "--lsp" }, dispatchers)
+      end
+    '';
+in
 {
   programs.nixvim = {
 
@@ -58,8 +75,14 @@
         };
         tsc.enable = true;
         biome.enable = true;
-        oxlint.enable = true;
-        oxfmt.enable = true;
+        oxlint = {
+          enable = true;
+          config.cmd = oxcCmd "lint" "oxlint";
+        };
+        oxfmt = {
+          enable = true;
+          config.cmd = oxcCmd "fmt" "oxfmt";
+        };
         lua_ls.enable = true;
         astro.enable = true;
         tinymist = {
