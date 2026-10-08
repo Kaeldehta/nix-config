@@ -29,6 +29,9 @@
       linear = {
         url = "https://mcp.linear.app/mcp";
       };
+      notion = {
+        url = "https://mcp.notion.com/mcp";
+      };
     };
   };
 
