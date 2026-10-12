@@ -32,6 +32,9 @@
       notion = {
         url = "https://mcp.notion.com/mcp";
       };
+      bluedot = {
+        url = "https://app.bluedothq.com/api/v1/mcp";
+      };
     };
   };
 
