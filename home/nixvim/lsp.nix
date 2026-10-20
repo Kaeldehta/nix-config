@@ -78,10 +78,12 @@ in
         oxlint = {
           enable = true;
           config.cmd = oxcCmd "lint" "oxlint";
+          config.workspace_required = true;
         };
         oxfmt = {
           enable = true;
           config.cmd = oxcCmd "fmt" "oxfmt";
+          config.workspace_required = true;
         };
         lua_ls.enable = true;
         astro.enable = true;
