@@ -105,6 +105,7 @@
     casks = [
       "anydesk"
       "arturia-software-center"
+      "claude"
     ];
 
     # masApps = {
