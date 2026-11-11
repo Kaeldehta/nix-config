@@ -1,7 +1,10 @@
 { pkgs, lib, ... }:
 
 {
-  imports = [ ./nixvim ];
+  imports = [
+    ./nixvim
+    ./keepassxc.nix
+  ];
 
   home.packages = with pkgs; [
     discord
@@ -118,6 +121,8 @@
       { id = "hlepfoohegkhhmjieoechaddaejaokhf"; }
       { id = "aeeninnnlhgaojlolnbpljadhbionlal"; }
       { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; }
+      # keepassxc-browser; native messaging host comes from programs.keepassxc.
+      { id = "oboonakemofpalcgghocfoadofidjkkk"; }
     ];
   };
 
