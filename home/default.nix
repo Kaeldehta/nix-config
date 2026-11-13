@@ -4,6 +4,7 @@
   imports = [
     ./nixvim
     ./keepassxc.nix
+    ./syncthing.nix
   ];
 
   home.packages = with pkgs; [
