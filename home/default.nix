@@ -1,7 +1,10 @@
 { pkgs, lib, ... }:
 
 {
-  imports = [ ./nixvim ];
+  imports = [
+    ./nixvim
+    ./keepassxc.nix
+  ];
 
   home.packages = with pkgs; [
     discord
@@ -58,6 +61,7 @@
       enabledPlugins = {
         "swift-lsp@claude-plugins-official" = true;
         "typescript-lsp@claude-plugins-official" = true;
+        "typesafe@typesafe-ai" = true;
       };
 
       extraKnownMarketplaces = {
@@ -65,6 +69,12 @@
           source = {
             source = "github";
             repo = "foldkit/foldkit";
+          };
+        };
+        typesafe-ai = {
+          source = {
+            source = "github";
+            repo = "typesafe-ai/skills";
           };
         };
       };
@@ -110,6 +120,8 @@
       { id = "hlepfoohegkhhmjieoechaddaejaokhf"; }
       { id = "aeeninnnlhgaojlolnbpljadhbionlal"; }
       { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; }
+      # keepassxc-browser; native messaging host comes from programs.keepassxc.
+      { id = "oboonakemofpalcgghocfoadofidjkkk"; }
     ];
   };
 

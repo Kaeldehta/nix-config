@@ -88,6 +88,14 @@ in
             { default-window-height._children = [ { proportion = 0.7; } ]; }
           ];
         }
+        {
+          window-rule._children = [
+            { match._props.app-id = "^brave-nngceckbapebfimnlniiiahkandclblb-"; }
+            { open-floating = true; }
+            { default-column-width._children = [ { fixed = 420; } ]; }
+            { default-window-height._children = [ { fixed = 700; } ]; }
+          ];
+        }
       ];
 
       binds = {
