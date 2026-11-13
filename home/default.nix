@@ -118,7 +118,6 @@
   programs.brave = {
     enable = true;
     extensions = [
-      { id = "nngceckbapebfimnlniiiahkandclblb"; }
       { id = "hlepfoohegkhhmjieoechaddaejaokhf"; }
       { id = "aeeninnnlhgaojlolnbpljadhbionlal"; }
       { id = "dbepggeogbaibhgnhhndojpepiihcmeb"; }
