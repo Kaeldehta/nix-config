@@ -4,6 +4,7 @@
   imports = [
     ./nixvim
     ./keepassxc.nix
+    ./librewolf.nix
     ./syncthing.nix
   ];
 
