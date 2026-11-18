@@ -6,7 +6,7 @@ let
   # device listed is shared the KeePass folder. A host's own entry is harmless.
   devices = {
     flo-gaming.id = "W6AB4KB-D2AWIBT-6JVYEWH-XDKNHV4-DXHCD7E-T3IFH44-OGH56RM-H4K6NQR";
-    # macbook-pro.id = "...";
+    macbook-pro.id = "INTBQF5-SPFDKPO-YGS2YDI-HWW6KHF-YBS5INJ-DTFKKYV-WD4RS4A-OEIMVAT";
     iphone.id = "KEEOPEI-BLHWOI2-K5SVZIV-FGV6JNI-TXCH3H3-CPOUCDA-INEKUHO-PN7MHQC";
   };
 in
